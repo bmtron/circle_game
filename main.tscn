@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://mjrlfytb304l"]
+
+[ext_resource type="Script" path="res://MainScript.cs" id="1_5tirc"]
+[ext_resource type="PackedScene" uid="uid://dpjike414iqoh" path="res://player.tscn" id="1_6etld"]
+[ext_resource type="Texture2D" uid="uid://c3r7tbo4ruetd" path="res://background.png" id="1_jil4c"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_r1je6"]
+friction = 0.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iu0s7"]
+size = Vector2(722.25, 41)
+
+[node name="Main" type="Node"]
+script = ExtResource("1_5tirc")
+
+[node name="PlayerCircle" parent="." instance=ExtResource("1_6etld")]
+z_index = 10
+position = Vector2(301, 105)
+
+[node name="StartPosition" type="Marker2D" parent="."]
+z_index = 9
+position = Vector2(302, 103)
+
+[node name="Background" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(361, 237)
+texture = ExtResource("1_jil4c")
+
+[node name="Floor" type="StaticBody2D" parent="."]
+position = Vector2(8, 436)
+physics_material_override = SubResource("PhysicsMaterial_r1je6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
+z_index = 10
+position = Vector2(352, -77)
+shape = SubResource("RectangleShape2D_iu0s7")
